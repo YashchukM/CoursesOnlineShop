@@ -1,0 +1,124 @@
+html, body {
+    font-family: 'Roboto', 'Helvetica', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/*-------------- Header ---------------*/
+
+.mdl-layout__header-row {
+    padding-left: 40px;
+}
+
+.mdl-navigation__link {
+    font-size: large;
+}
+
+/*---------------Home-----------------*/
+
+.home-headings {
+    text-align: center;
+}
+
+.img-background {
+    width: 100%;
+    z-index: 0;
+}
+
+/* ---------------Cards----------------- */
+
+/*-- Login, Register --*/
+
+.shop-inp__form-card.mdl-card {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+}
+.shop-inp__form-card > .mdl-card__title {
+    color: #fff;
+    height: 100px;
+}
+
+.shop-inp__form {
+    text-align: center;
+}
+
+.shop-inp__form > :first-child {
+    margin-top: 20px;
+}
+
+/*-- Product --*/
+
+.product-card > .mdl-card__title {
+    color: #fff;
+    background:
+    url('/images/product.png') center/cover no-repeat #46B6AC;
+}
+
+.product-card.mdl-card {
+    height: 320px;
+}
+
+.mdl-card__supporting-text > .title {
+    font-size: large;
+}
+
+.mdl-card__title > form {
+    margin-left: auto;
+    margin-bottom: auto;
+}
+
+/* Cheat to keep footer on bottom */
+.mdl-grid.product-grid {
+    min-height: 73.7%;
+}
+
+.mdl-layout__content > h2 {
+    margin-left: 20px;
+}
+
+/*-------------- Forms -----------*/
+
+.shop-form-btn {
+    width: 50%;
+    margin: 10px;
+}
+
+.mdl-textfield {
+    width: 80%;
+}
+
+/*----------------Profile, Basket--------------*/
+
+table {
+    width: 100%;
+}
+
+.table-head-row > th, tr {
+    font-size: medium;
+}
+
+.mdl-data-table td {
+    vertical-align: baseline;
+}
+
+td > form {
+    margin-bottom: 0;
+}
+
+.basket-total {
+    float: right;
+    font-size: 20px;
+    padding-top: 8px;
+    text-decoration: underline;
+}
+
+.shop-inp__form-card > form {
+    margin: 25px;
+}
+
+/*---Admin---*/
+
+.shop-inp__form-card > h3 {
+    margin-left: 20px;
+}
