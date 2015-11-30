@@ -1,18 +1,11 @@
 CREATE TABLE `shop_schema`.`order_part` (
-  `id_order_part` INT NOT NULL,
-  `id_order` INT NOT NULL,
-  `id_product` INT NOT NULL,
-  `number` INT NOT NULL,
-  PRIMARY KEY (`id_order_part`),
-  INDEX `id_order_idx` (`id_order` ASC),
-  INDEX `id_product_idx` (`id_product` ASC),
-  CONSTRAINT `id_order`
-    FOREIGN KEY (`id_order`)
-    REFERENCES `shop_schema`.`order` (`id_order`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `id_product`
-    FOREIGN KEY (`id_product`)
-    REFERENCES `shop_schema`.`product` (`id_product`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_order` int(11) DEFAULT NULL,
+  `id_product` int(11) DEFAULT NULL,
+  `number` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_order_part_1_idx` (`id_order`),
+  KEY `fk_order_part_2_idx` (`id_product`),
+  CONSTRAINT `fk_order` FOREIGN KEY (`id_order`) REFERENCES `order` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_product` FOREIGN KEY (`id_product`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
