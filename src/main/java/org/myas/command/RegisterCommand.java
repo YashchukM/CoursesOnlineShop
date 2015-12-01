@@ -1,6 +1,7 @@
 package org.myas.command;
 
 import org.apache.log4j.Logger;
+import org.myas.dao.PersistException;
 import org.myas.entity.User;
 import org.myas.helper.Page;
 import org.myas.manager.UserManager;
@@ -50,7 +51,7 @@ public class RegisterCommand implements Command {
             } else {                                            /* User with such email already exists */
                 error += "User with such login already exists. ";
             }
-        } catch (Exception e) {
+        } catch (PersistException e) {
             Logger.getLogger(this.getClass()).error(e.getMessage());
             error += "Internal problems, try again later. ";
         }

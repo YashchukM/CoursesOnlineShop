@@ -1,6 +1,7 @@
 package org.myas.command;
 
 import org.apache.log4j.Logger;
+import org.myas.dao.PersistException;
 import org.myas.entity.Order;
 import org.myas.entity.OrderPart;
 import org.myas.entity.User;
@@ -36,7 +37,7 @@ public class AddOrderCommand implements Command {
              * Invalidate current order in session.
              */
             request.getSession().setAttribute("currentOrder", null);
-        } catch (Exception e) {
+        } catch (PersistException e) {
             Logger.getLogger(getClass()).error(e);
             page = "index.jsp";
             redirect = false;

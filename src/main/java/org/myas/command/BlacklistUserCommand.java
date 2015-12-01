@@ -1,6 +1,7 @@
 package org.myas.command;
 
 import org.apache.log4j.Logger;
+import org.myas.dao.PersistException;
 import org.myas.entity.Product;
 import org.myas.helper.Page;
 import org.myas.manager.ProductManager;
@@ -31,7 +32,7 @@ public class BlacklistUserCommand implements Command {
         Integer userId = Integer.valueOf(request.getParameter(PARAM_PRODUCT_ID));
         try {
             userManager.setBlacklisted(userId, true);
-        } catch (Exception e) {
+        } catch (PersistException e) {
             Logger.getLogger(getClass()).error(e);
             page = "index.jsp";
             redirect = false;

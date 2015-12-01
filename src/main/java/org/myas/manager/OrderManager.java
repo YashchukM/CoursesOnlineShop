@@ -10,6 +10,7 @@ import org.myas.entity.Order;
 import org.myas.entity.OrderPart;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  * Provides functionality to do any actions on Order objects in persistent context.
@@ -29,9 +30,9 @@ public class OrderManager {
      * Saves order into datasource.
      * @param order object to save, has no id.
      * @return order with same fields and set id.
-     * @throws Exception if error while saving occurs, rolls back all changes.
+     * @throws PersistException if error while saving occurs, rolls back all changes.
      */
-    public Order create(Order order) throws Exception {
+    public Order create(Order order) throws PersistException {
         try (Connection connection = connectionPool.getConnection()) {
             Order insOrder;
 
@@ -49,27 +50,27 @@ public class OrderManager {
             } catch (PersistException ex) {
                 connection.rollback();
                 connection.setAutoCommit(true);
-                throw new Exception(ex);
+                throw ex;
             }
 
             connection.setAutoCommit(true);
             return insOrder;
+        } catch (SQLException e) {
+           throw new PersistException(e);
         }
     }
 
     /**
      * Updates order that is already saved in datasource.
      * @param order object to update.
-     * @throws Exception if error while updating occurs, rolls back all changes.
+     * @throws PersistException if error while updating occurs, rolls back all changes.
      */
-    public void update(Order order) throws Exception {
+    public void update(Order order) throws PersistException {
         try (Connection connection = connectionPool.getConnection()) {
-            try {
-                MySqlOrderDao orderDao = (MySqlOrderDao) factory.getDao(Order.class, connection);
-                orderDao.update(order);
-            } catch (PersistException e) {
-                throw new Exception(e);
-            }
+            MySqlOrderDao orderDao = (MySqlOrderDao) factory.getDao(Order.class, connection);
+            orderDao.update(order);
+        } catch (SQLException e) {
+            throw new PersistException(e);
         }
     }
 }

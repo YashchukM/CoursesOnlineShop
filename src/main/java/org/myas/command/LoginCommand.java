@@ -1,6 +1,7 @@
 package org.myas.command;
 
 import org.apache.log4j.Logger;
+import org.myas.dao.PersistException;
 import org.myas.entity.User;
 import org.myas.helper.Page;
 import org.myas.manager.UserManager;
@@ -53,7 +54,7 @@ public class LoginCommand implements Command {
                 error += "Check your password and email. ";
                 request.setAttribute("message", error);
             }
-        } catch (Exception e) {
+        } catch (PersistException e) {
             Logger.getLogger(this.getClass()).error(e.getMessage());
             error += "Internal problems, try again later. ";
             request.setAttribute("message", error);

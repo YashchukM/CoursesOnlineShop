@@ -1,6 +1,7 @@
 package org.myas.command;
 
 import org.apache.log4j.Logger;
+import org.myas.dao.PersistException;
 import org.myas.entity.Order;
 import org.myas.entity.User;
 import org.myas.helper.Page;
@@ -39,7 +40,7 @@ public class PayOrderCommand implements Command {
                     orderManager.update(cur);
                 }
             }
-        } catch (Exception e) {
+        } catch (PersistException e) {
             Logger.getLogger(getClass()).error(e);
             page = "index.jsp";
             redirect = false;

@@ -12,6 +12,7 @@ import org.myas.entity.OrderPart;
 import org.myas.entity.User;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -32,9 +33,9 @@ public class UserManager {
      * Returns user by his email.
      * @param email email of user.
      * @return user with such email.
-     * @throws Exception if error while retrieving occurs.
+     * @throws PersistException if error while retrieving occurs.
      */
-    public User get(String email) throws Exception {
+    public User get(String email) throws PersistException {
         try (Connection connection = connectionPool.getConnection()) {
             try {
                 MySqlUserDao userDao = (MySqlUserDao) factory.getDao(User.class, connection);
@@ -59,8 +60,10 @@ public class UserManager {
 
                 return user;
             } catch (PersistException e) {
-                throw new Exception(e);
+                throw e;
             }
+        } catch (SQLException e) {
+            throw new PersistException(e);
         }
     }
 
@@ -69,9 +72,9 @@ public class UserManager {
      * @param email email of user.
      * @param password
      * @return
-     * @throws Exception if any error while logging in occurs.
+     * @throws PersistException if any error while logging in occurs.
      */
-    public User login(String email, String password) throws Exception {
+    public User login(String email, String password) throws PersistException {
         User user = get(email);
         if (user != null && user.getPassword().equals(password)) {
             return user;
@@ -83,9 +86,9 @@ public class UserManager {
      * Set blacklist property of user object.
      * @param id identificator of user.
      * @param blacklisted true to add to blacklist, false to remove from blacklist.
-     * @throws Exception if any error while setting occurs.
+     * @throws PersistException if any error while setting occurs.
      */
-    public void setBlacklisted(Integer id, boolean blacklisted) throws Exception {
+    public void setBlacklisted(Integer id, boolean blacklisted) throws PersistException {
         try (Connection connection = connectionPool.getConnection()) {
             try {
                 MySqlUserDao userDao = (MySqlUserDao) factory.getDao(User.class, connection);
@@ -94,8 +97,10 @@ public class UserManager {
                 user.setBlacklisted(blacklisted);
                 userDao.update(user);
             } catch (PersistException e) {
-                throw new Exception(e);
+                throw e;
             }
+        } catch (SQLException e) {
+            throw new PersistException(e);
         }
     }
 
@@ -106,9 +111,9 @@ public class UserManager {
      * @param email email of user
      * @param password user password
      * @return created user with set id
-     * @throws Exception if any error while creating new user occurs.
+     * @throws PersistException if any error while creating new user occurs.
      */
-    public User create(String firName, String secName, String email, String password) throws Exception {
+    public User create(String firName, String secName, String email, String password) throws PersistException {
         try (Connection connection = connectionPool.getConnection()) {
             try {
                 MySqlUserDao userDao = (MySqlUserDao) factory.getDao(User.class, connection);
@@ -121,16 +126,18 @@ public class UserManager {
 
                 return userDao.persist(user);
             } catch (PersistException e) {
-                throw new Exception(e);
+                throw e;
             }
+        } catch (SQLException e) {
+            throw new PersistException(e);
         }
     }
 
     /**
      * @return list of users, who have at least one pending order(which they did not pay for).
-     * @throws Exception if any error occurs.
+     * @throws PersistException if any error occurs.
      */
-    public List<User> getDefaulters() throws Exception {
+    public List<User> getDefaulters() throws PersistException {
         try (Connection connection = connectionPool.getConnection()) {
             try {
                 MySqlUserDao userDao = (MySqlUserDao) factory.getDao(User.class, connection);
@@ -154,16 +161,18 @@ public class UserManager {
 
                 return users;
             } catch (PersistException e) {
-                throw new Exception(e);
+                throw e;
             }
+        } catch (SQLException e) {
+            throw new PersistException(e);
         }
     }
 
     /**
      * @return list of users, who have got into the blacklist.
-     * @throws Exception if any error occurs.
+     * @throws PersistException if any error occurs.
      */
-    public List<User> getBlacklisted() throws Exception {
+    public List<User> getBlacklisted() throws PersistException {
         try (Connection connection = connectionPool.getConnection()) {
             try {
                 MySqlUserDao userDao = (MySqlUserDao) factory.getDao(User.class, connection);
@@ -187,8 +196,10 @@ public class UserManager {
                 }
                 return users;
             } catch (PersistException e) {
-                throw new Exception(e);
+                throw e;
             }
+        } catch (SQLException e) {
+            throw new PersistException(e);
         }
     }
 

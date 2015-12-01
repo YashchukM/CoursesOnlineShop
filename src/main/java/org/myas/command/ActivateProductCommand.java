@@ -1,6 +1,7 @@
 package org.myas.command;
 
 import org.apache.log4j.Logger;
+import org.myas.dao.PersistException;
 import org.myas.entity.Order;
 import org.myas.entity.Product;
 import org.myas.entity.User;
@@ -35,7 +36,7 @@ public class ActivateProductCommand implements Command {
             Product product = productManager.get(productId);
             product.setAvailable(true);
             productManager.update(product);
-        } catch (Exception e) {
+        } catch (PersistException e) {
             Logger.getLogger(getClass()).error(e);
             page = "index.jsp";
             redirect = false;

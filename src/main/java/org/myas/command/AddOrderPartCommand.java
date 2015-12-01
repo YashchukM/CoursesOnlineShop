@@ -1,6 +1,7 @@
 package org.myas.command;
 
 import org.apache.log4j.Logger;
+import org.myas.dao.PersistException;
 import org.myas.entity.Order;
 import org.myas.entity.OrderPart;
 import org.myas.entity.Product;
@@ -68,7 +69,7 @@ public class AddOrderPartCommand implements Command {
 
                 order.addOrderPart(newPart);
                 request.getSession().setAttribute("currentOrder", order);
-            } catch (Exception e) {
+            } catch (PersistException e) {
                 Logger.getLogger(this.getClass()).error(e.getMessage());
                 String error = "Error while adding product to order. Try again later. ";
                 request.setAttribute("message", error);
