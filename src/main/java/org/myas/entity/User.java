@@ -1,12 +1,7 @@
 package org.myas.entity;
 
-import org.myas.dao.DaoFactory;
-import org.myas.dao.GenericDao;
 import org.myas.dao.Identified;
-import org.myas.dao.PersistException;
-import org.myas.dao.impl.mysql.MySqlDaoFactory;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 

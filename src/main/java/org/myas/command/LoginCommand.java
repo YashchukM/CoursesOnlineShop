@@ -39,7 +39,6 @@ public class LoginCommand implements Command {
         try {
             User user = userManager.login(email, password);
             if (user != null) {                                             /* Logged in */
-                user.setPassword(null);                                     /* Make password null to avoid data leak */
                 request.getSession().setAttribute("currentUser", user);
                 if (user.isAdmin()) {                                       /* User has admin role */
                     page = "admin.jsp";

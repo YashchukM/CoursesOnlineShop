@@ -1,6 +1,7 @@
 package org.myas.command;
 
 import org.apache.log4j.Logger;
+import org.mindrot.jbcrypt.BCrypt;
 import org.myas.dao.PersistException;
 import org.myas.entity.User;
 import org.myas.helper.Page;
@@ -36,6 +37,8 @@ public class RegisterCommand implements Command {
         String firstName = request.getParameter(PARAM_FIRST_NAME);
         String secondName = request.getParameter(PARAM_LAST_NAME);
 
+        password = BCrypt.hashpw(password, BCrypt.gensalt());
+
         String error = "Registration error. ";
         try {
             User user = userManager.get(email);
@@ -60,4 +63,6 @@ public class RegisterCommand implements Command {
         page = "index.jsp";
         return new Page(page, redirect);
     }
+
+
 }

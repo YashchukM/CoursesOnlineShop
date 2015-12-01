@@ -1,5 +1,6 @@
 package org.myas.manager;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.myas.dao.DaoFactory;
 import org.myas.dao.PersistException;
 import org.myas.dao.impl.mysql.MySqlDaoFactory;
@@ -76,7 +77,7 @@ public class UserManager {
      */
     public User login(String email, String password) throws PersistException {
         User user = get(email);
-        if (user != null && user.getPassword().equals(password)) {
+        if (user != null && BCrypt.checkpw(password, user.getPassword())) {
             return user;
         }
         return null;
