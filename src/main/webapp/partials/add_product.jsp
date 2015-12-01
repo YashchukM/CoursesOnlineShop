@@ -15,7 +15,11 @@
 
             <div class="mdl-textfield mdl-js-textfield">
                 <label for="prod_name" class="mdl-textfield__label"><fmt:message key="products.name" /></label>
-                <input type="text" class="mdl-textfield__input" id="prod_name" name="name" required>
+                <input type="text" class="mdl-textfield__input" id="prod_name" name="name"
+                       pattern="[a-zA-Z0-9_-\s]{5,44}[a-zA-Z0-9_-]" required>
+                <span class="mdl-textfield__error">
+                    <fmt:message key="products.name.error" />
+                </span>
             </div>
 
             <div class="mdl-textfield mdl-js-textfield">
@@ -25,12 +29,17 @@
 
             <div class="mdl-textfield mdl-js-textfield">
                 <label for="prod_price" class="mdl-textfield__label"><fmt:message key="products.price" /></label>
-                <input type="text" class="mdl-textfield__input" id="prod_price" name="price" required>
+                <input type="text" class="mdl-textfield__input" id="prod_price" name="price"
+                       pattern="[0-9]*\.?[0-9]+" required>
+                <span class="mdl-textfield__error">
+                    <fmt:message key="products.price.error" />
+                </span>
             </div>
 
             <div class="mdl-textfield mdl-js-textfield">
                 <label for="prod_image" class="mdl-textfield__label"><fmt:message key="products.image" /></label>
-                <input type="text" class="mdl-textfield__input" id="prod_image" name="image" required>
+                <input type="text" class="mdl-textfield__input" id="prod_image" name="image"
+                       pattern="(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?" required>
             </div>
 
             <br>

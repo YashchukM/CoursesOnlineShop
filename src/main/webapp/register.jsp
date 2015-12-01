@@ -27,15 +27,23 @@
                                         <fmt:message key="form.name.first" />
                                     </label>
                                     <input type="text" class="mdl-textfield__input" id="inp-fir-name"
-                                           name="firstName" required>
+                                           name="firstName" pattern="[a-zA-Z\u0400-\u04ff]{2,30}" required>
+                                    <span class="mdl-textfield__error">
+                                        <fmt:message key="form.name.first.error" />
+                                    </span>
                                 </div>
+
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                     <label for="inp-las-name" class="mdl-textfield__label">
                                         <fmt:message key="form.name.last" />
                                     </label>
                                     <input type="text" class="mdl-textfield__input" id="inp-las-name"
-                                           name="lastName" required>
+                                           name="lastName" pattern="[a-zA-Z\u0400-\u04ff]{2,30}" required>
+                                    <span class="mdl-textfield__error">
+                                        <fmt:message key="form.name.last.error" />
+                                    </span>
                                 </div>
+
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                     <label for="reg-inp-email" class="mdl-textfield__label">
                                         <fmt:message key="form.email" />
@@ -43,12 +51,16 @@
                                     <input type="email" class="mdl-textfield__input" id="reg-inp-email"
                                            name="email" required>
                                 </div>
+
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                     <label for="reg-inp-pas" class="mdl-textfield__label">
                                         <fmt:message key="form.password" />
                                     </label>
                                     <input type="password" class="mdl-textfield__input" id="reg-inp-pas"
-                                           name="password" required>
+                                           name="password" pattern="[a-z0-9_-]{6,18}" required>
+                                    <span class="mdl-textfield__error">
+                                        <fmt:message key="form.password.error" />
+                                    </span>
                                 </div>
                                 <br>
 
