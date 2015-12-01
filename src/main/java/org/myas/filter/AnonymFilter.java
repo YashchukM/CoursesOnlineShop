@@ -35,6 +35,9 @@ public class AnonymFilter implements Filter {
             } else { // Requested page is in partials/ folder
                 resp.sendRedirect("../home.jsp");
             }
+        } else {
+            RequestDispatcher dispatcher = request.getRequestDispatcher(req.getRequestURI());
+            dispatcher.forward(request, response);
         }
     }
 

@@ -23,9 +23,11 @@
 
             <div class="mdl-grid">
                 <jsp:include page="partials/add_product.jsp"/>
+
                 <c:forEach items="${unavailableProducts}" var="product">
                     <div class="product-card mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col">
-                        <div class="mdl-card__title mdl-card--expand">
+                        <div class="mdl-card__title mdl-card--expand"
+                             style="background: url('${product.imageUrl}') center/cover no-repeat #46B6AC;">
                             <shop:button_for action="home" command="activateProduct" model="${product.id}"
                                              styleClass="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect
                                                          mdl-button--colored">
@@ -55,7 +57,8 @@
         <div class="product-grid mdl-grid">
             <c:forEach items="${products}" var="product">
                 <div class="product-card mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col">
-                    <div class="mdl-card__title mdl-card--expand">
+                    <div class="mdl-card__title mdl-card--expand"
+                         style="background: url('${product.imageUrl}') center/cover no-repeat #46B6AC;">
                         <c:if test="${currentUser ne null}">
                             <shop:button_for action="home" command="addOrderPart" model="${product.id}"
                                              styleClass="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect

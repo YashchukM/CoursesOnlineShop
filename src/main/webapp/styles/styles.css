@@ -51,12 +51,16 @@ html, body {
 
 .product-card > .mdl-card__title {
     color: #fff;
-    background:
-    url('/images/product.png') center/cover no-repeat #46B6AC;
+    /*background:*/
+    /*url('/images/product.png') center/cover no-repeat #46B6AC;*/
 }
 
 .product-card.mdl-card {
     height: 320px;
+}
+
+.add_product-card.mdl-card {
+    height: 400px;
 }
 
 .mdl-card__supporting-text > .title {

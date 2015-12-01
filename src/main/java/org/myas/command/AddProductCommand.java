@@ -27,6 +27,7 @@ public class AddProductCommand implements Command {
     private static final String PARAM_PRODUCT_NAME = "name";
     private static final String PARAM_PRODUCT_DESCRIPTION = "description";
     private static final String PARAM_PRODUCT_PRICE = "price";
+    private static final String PARAM_PRODUCT_IMAGE = "image";
 
 
     @Override
@@ -37,9 +38,10 @@ public class AddProductCommand implements Command {
         String name = request.getParameter(PARAM_PRODUCT_NAME);
         String description = request.getParameter(PARAM_PRODUCT_DESCRIPTION);
         float price = Float.valueOf(request.getParameter(PARAM_PRODUCT_PRICE));
+        String imageUrl = request.getParameter(PARAM_PRODUCT_IMAGE);
 
         try {
-            productManager.create(name, description, false, price);
+            productManager.create(name, description, false, price, imageUrl);
         } catch (PersistException e) {
             Logger.getLogger(getClass()).error(e);
             page = "index.jsp";

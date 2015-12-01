@@ -2,6 +2,7 @@ package org.myas.filter;
 
 
 import org.apache.log4j.Logger;
+import org.myas.dao.PersistException;
 import org.myas.entity.Product;
 import org.myas.entity.User;
 import org.myas.helper.Page;
@@ -42,7 +43,7 @@ public class ProductsFilter implements Filter {
             try {
                 List<Product> unavProducts = productManager.getUnavailable();
                 request.setAttribute("unavailableProducts", unavProducts);
-            } catch (Exception e) {
+            } catch (PersistException e) {
                 Logger.getLogger(getClass()).error(e.getMessage());
                 request.setAttribute("message", "Oops..Something went wrong..Please, try again later");
                 nextPage.setPage("index.jsp");
@@ -52,7 +53,7 @@ public class ProductsFilter implements Filter {
         try {
             List<Product> products = productManager.getAvailable();
             request.setAttribute("products", products);
-        } catch (Exception e) {
+        } catch (PersistException e) {
             Logger.getLogger(getClass()).error(e.getMessage());
             request.setAttribute("message", "Oops..Something went wrong..Please, try again later");
             nextPage.setPage("index.jsp");

@@ -31,6 +31,25 @@ public class Product implements Identified<Integer> {
      */
     private float price;
 
+    /**
+     * Url of appropriate image
+     */
+    private String imageUrl;
+
+    /**
+     * @return url of saved image
+     */
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    /**
+     * @param imageUrl url of saved image
+     */
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     @Override
     public Integer getId() {
         return id;

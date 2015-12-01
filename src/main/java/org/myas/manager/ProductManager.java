@@ -31,10 +31,12 @@ public class ProductManager {
      * @param description description of new product.
      * @param available will product be available to buy or not.
      * @param price how much does one item of product cost.
+     * @param imageUrl url of product's image
      * @return created product with set id.
      * @throws PersistException if error while saving occurs, rolls back all changes.
      */
-    public Product create(String name, String description, boolean available, float price) throws PersistException {
+    public Product create(String name, String description, boolean available, float price, String imageUrl)
+            throws PersistException {
         try (Connection connection = connectionPool.getConnection()) {
             MySqlProductDao productDao = (MySqlProductDao) factory.getDao(Product.class, connection);
 
@@ -43,6 +45,7 @@ public class ProductManager {
             product.setDescription(description);
             product.setAvailable(available);
             product.setPrice(price);
+            product.setImageUrl(imageUrl);
 
             return productDao.persist(product);
         } catch (SQLException e) {

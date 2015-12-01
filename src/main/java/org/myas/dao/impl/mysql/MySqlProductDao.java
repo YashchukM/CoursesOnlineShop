@@ -72,6 +72,7 @@ public class MySqlProductDao extends AbstractJDBCDao<Product, Integer> {
                 product.setDescription(rs.getString("description"));
                 product.setAvailable(rs.getBoolean("available"));
                 product.setPrice(rs.getFloat("price"));
+                product.setImageUrl(rs.getString("image_url"));
                 result.add(product);
             }
         } catch (Exception e) {
@@ -87,6 +88,7 @@ public class MySqlProductDao extends AbstractJDBCDao<Product, Integer> {
             statement.setString(2, object.getDescription());
             statement.setBoolean(3, object.isAvailable());
             statement.setFloat(4, object.getPrice());
+            statement.setString(5, object.getImageUrl());
         } catch (Exception e) {
             throw new PersistException(e);
         }
@@ -100,6 +102,7 @@ public class MySqlProductDao extends AbstractJDBCDao<Product, Integer> {
             statement.setBoolean(3, object.isAvailable());
             statement.setFloat(4, object.getPrice());
             statement.setInt(5, object.getId());
+            statement.setString(6, object.getImageUrl());
         } catch (Exception e) {
             throw new PersistException(e);
         }

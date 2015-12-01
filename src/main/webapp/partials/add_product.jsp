@@ -8,7 +8,7 @@
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="i18n.text" />
 
-<div class="product-card mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col">
+<div class="add-product-card mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col">
     <div class="shop-inp__form">
         <form action="home" method="post">
             <input type="hidden" name="command" value="addProduct">
@@ -26,6 +26,11 @@
             <div class="mdl-textfield mdl-js-textfield">
                 <label for="prod_price" class="mdl-textfield__label"><fmt:message key="products.price" /></label>
                 <input type="text" class="mdl-textfield__input" id="prod_price" name="price" required>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield">
+                <label for="prod_image" class="mdl-textfield__label"><fmt:message key="products.image" /></label>
+                <input type="text" class="mdl-textfield__input" id="prod_image" name="image" required>
             </div>
 
             <br>
